@@ -11,7 +11,7 @@ import logging
 from app.core.config import settings
 from app.db import async_session_factory
 from app.repositories import TaskRepository
-from app.services import TaskWorkerService
+from app.services.worker_service import TaskWorkerService
 from app.workers.processor import TaskProcessor
 
 logger = logging.getLogger(__name__)

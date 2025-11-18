@@ -38,11 +38,11 @@ class Task(Base):
     title: Mapped[str] = mapped_column(String(length=255), nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     priority: Mapped[TaskPriority] = mapped_column(
-        Enum(TaskPriority, name="task_priority"),
+        Enum(TaskPriority, name="task_priority", native_enum=False),
         nullable=False,
     )
     status: Mapped[TaskStatus] = mapped_column(
-        Enum(TaskStatus, name="task_status"),
+        Enum(TaskStatus, name="task_status", native_enum=False),
         nullable=False,
         default=TaskStatus.NEW,
     )

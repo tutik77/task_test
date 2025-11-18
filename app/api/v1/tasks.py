@@ -8,7 +8,7 @@ from app.api.deps import get_task_service
 from app.core.config import settings
 from app.models import TaskPriority, TaskStatus
 from app.schemas import TaskCreate, TaskList, TaskRead, TaskStatusSchema
-from app.services import TaskService
+from app.services.task_service import TaskService
 from app.services.exceptions import (
     PublisherUnavailableError,
     TaskConflictError,

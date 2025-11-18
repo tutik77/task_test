@@ -54,7 +54,11 @@ class TaskRepository:
         items_result = await self.session.execute(stmt)
         items = items_result.scalars().all()
 
-        count_stmt = self._apply_filters(select(func.count(Task.id)), status, priority)
+        count_stmt = self._apply_filters(
+            select(func.count(Task.id)),
+            status=status,
+            priority=priority,
+        )
         count_result = await self.session.execute(count_stmt)
         total = count_result.scalar_one() or 0
         return items, total

@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.db import get_async_session
 from app.mq import TaskPublisherProtocol
 from app.repositories import TaskRepository
-from app.services import TaskService
+from app.services.task_service import TaskService
 
 
 async def get_publisher(request: Request) -> TaskPublisherProtocol | None:

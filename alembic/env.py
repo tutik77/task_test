@@ -1,19 +1,23 @@
 from __future__ import annotations
 
 import asyncio
-from logging.config import fileConfig
+import os
+import sys
 
 from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
+# Добавляем корень проекта в PYTHONPATH, чтобы можно было импортировать пакет app,
+# независимо от того, из какой директории запускается Alembic.
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from app.core.config import settings
 from app.db import Base
 from app.models import task  # noqa: F401
 
 config = context.config
-fileConfig(config.config_file_name)  # type: ignore[arg-type]
 config.set_main_option("sqlalchemy.url", settings.database_url)
 
 target_metadata = Base.metadata
